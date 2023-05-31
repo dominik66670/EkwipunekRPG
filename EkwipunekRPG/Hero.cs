@@ -298,8 +298,35 @@ namespace EkwipunekRPG
         public override string ToString()
         {
             var str = $"Hero {Name} "+this.HeroStats.ToString();
+            str += " on Head has " + isMagickItem(Head);
+            str += " on Back has " + isMagickItem(Back); ;
+            str += " on Chest has " + isMagickItem(Chest);
+            str += " on Right Hand has " + isMagickItem(RightHand);
+            str += " on Left Hand has " + isMagickItem(LeftHand);
+            str += " on Feet has " + isMagickItem(Feet);
+            
             
             return str;
+        }
+        private string isMagickItem(Equipment eq)
+        {
+            var response = "";
+            if (eq != null)
+            {
+                if (eq is MagickEquipment)
+                {
+                    response += "Magick equipment ";
+                }
+                else
+                {
+                    response += "equipment ";
+                }
+                return response + $"{eq.Name}";
+            }
+            else
+            {
+                return response + "nothing";
+            }
         }
 
     }
