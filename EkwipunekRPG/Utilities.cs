@@ -8,6 +8,7 @@ namespace EkwipunekRPG
 {
     public class Utilities : Item, IUsable
     {
+        public event IUsable.Usable OnUse;
         public Utilities() { }
         public Utilities(int baseStrength, string description, Rarity itemRarity, Stats itemStats, string name, int price) : base(baseStrength, description, itemRarity, itemStats, name, price) { }
         public int ItemStrength()
@@ -15,9 +16,9 @@ namespace EkwipunekRPG
             return BaseStrength * (1 + (int)ItemRarity);
         }
 
-        public string UseItem(IUsable.Usable usable)
+        public string UseItem()
         {
-            return usable(this);
+            return OnUse?.Invoke(this);
         }
     }
 }

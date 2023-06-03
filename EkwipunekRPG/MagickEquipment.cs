@@ -8,11 +8,12 @@ namespace EkwipunekRPG
 {
     public class MagickEquipment : Equipment, IUsable
     {
+        public event IUsable.Usable OnUse;
         public MagickEquipment() { }
         public MagickEquipment(List<EquipmentType> type, int baseStrength, string description, Rarity itemRarity, Stats itemStats, string name, int price) : base(type, baseStrength, description, itemRarity, itemStats, name, price) { }
-        public string UseItem(IUsable.Usable usable)
+        public string UseItem()
         {
-            return usable(this);
+            return OnUse?.Invoke(this);
         }
         public override string ToString()
         {
